@@ -1,8 +1,28 @@
 // Time:  O(n)
 // Space: O(1)
 
-// DP with rolling window.
+// DP with two numbers
 class Solution {
+public:
+    int numWays(int n, int k) {
+        if (n == 0)
+            return 0;
+        if (n == 1)
+            return k;
+        int same_color = k;
+        int diff_color = k * (k - 1);
+        for (int i = 2; i < n; i++) {
+            int tmp = same_color;
+            same_color = diff_color;
+            diff_color = (tmp + diff_color) * (k-1);
+        }
+        return same_color + diff_color;
+    }
+}
+
+
+// DP with rolling window.
+class Solution2 {
 public:
     int numWays(int n, int k) {
         if (n == 0) {
@@ -23,7 +43,7 @@ public:
 // Time:  O(n)
 // Space: O(n)
 // DP solution.
-class Solution2 {
+class Solution3 {
 public:
     int numWays(int n, int k) {
         if (n == 0) {
