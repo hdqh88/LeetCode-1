@@ -1,6 +1,31 @@
 // Time:  O(|V| + |E|)
 // Space: O(|V| + |E|)
 
+
+class Solution {
+public:
+    bool validTree(int n, vector<pair<int, int>>& edges) {
+        map<int, int> ind;
+        for(int i = 0; i < n; i++)
+            ind[i] = i;
+        for(pair<int, int> edge : edges){
+            int x = find(&ind, edge.first);
+            int y = find(&ind, edge.second);
+            if(x == y)
+                return false;
+            ind[x] = y;
+        }
+        return edges.size() == n - 1;
+    }
+    
+    int find(map<int, int> *a, int i){
+        if((*a)[i] == i)
+            return i;
+        return find(a, (*a)[i]);
+    }
+};
+
+
 // Same complexity, but faster version.
 class Solution {
 public:
