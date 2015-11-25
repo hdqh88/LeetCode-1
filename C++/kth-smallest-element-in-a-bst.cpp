@@ -11,6 +11,28 @@
  * };
  */
 
+// DFS
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        return dfs(root, k);
+    }
+    int dfs(TreeNode* p, int& k){
+        if(!p->left && !p->right){
+            --k;
+            return p->val;
+        }
+        int x = p->left ? dfs(p->left, k) : p->val;
+        if(k == 0)
+            return x;
+        if(--k == 0)
+            return p->val;
+        return p->right ? dfs(p->right, k) : p->val;
+    }
+};
+
+
+
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
