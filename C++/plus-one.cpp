@@ -2,20 +2,17 @@
 // Space Complexity: O(1)
 
 class Solution {
-    public:
-        vector<int> plusOne(vector<int> &digits) {
-            int c = 1;
-
-            for(auto it = digits.rbegin(); it != digits.rend(); ++it) {
-                *it += c;
-                c = *it / 10;
-                *it %= 10;
-            }
-
-            if(c > 0) {
-                digits.insert(digits.begin(), 1);
-            }
-
-            return digits;
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        int carry = 1;
+        for(int i = n - 1; i >= 0; i--){
+            digits[i] += carry;
+            carry = digits[i] / 10;
+            digits[i] = digits[i] % 10;
         }
+        if(carry > 0)
+            digits.insert(digits.begin(), 1);
+        return digits;
+    }
 };
