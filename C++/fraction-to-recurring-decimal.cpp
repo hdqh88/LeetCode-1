@@ -8,7 +8,7 @@ public:
 	    string res;
 	    // determine the sign
 	    if (n < 0 ^ d < 0) res += '-';
-	
+	    
 	    // remove sign of operands
 	    n = abs(n), d = abs(d);
 	
