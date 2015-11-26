@@ -4,7 +4,7 @@ public:
 	string fractionToDecimal(int64_t n, int64_t d) {
 	    // zero numerator
 	    if (n == 0) return "0";
-	
+	    
 	    string res;
 	    // determine the sign
 	    if (n < 0 ^ d < 0) res += '-';
