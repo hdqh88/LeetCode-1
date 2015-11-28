@@ -1,3 +1,50 @@
+// Time:  O(m log n + n log m)
+// Space: O(1)
+class Solution {
+public:
+    int minArea(vector<vector<char>>& image, int x, int y) {
+        int m = image.size();
+        int n = image[0].size();
+        int top = searchRows(0, x, 0, n, true, &image);
+        int bottom = searchRows(x+1, m, 0, n, false, &image);
+        int left = searchColumns(0, y, 0, m, true, &image);
+        int right = searchColumns(y+1, n, 0, m, false, &image);
+        return (bottom - top) * (right - left);
+    }
+    
+    int searchRows(int i, int j, int start, int end, bool opt, vector<vector<char> > *p){
+        while(i < j){
+            int mid = (i + j)/2;
+            int k = start;
+            while(k < end && (*p)[mid][k] == '0')
+                k++;
+            if(k < end == opt)
+                j = mid;
+            else
+                i = mid + 1;
+        }
+        return j;
+    }
+    
+    int searchColumns(int i, int j, int start, int end, bool opt, vector<vector<char> > *p){
+        while(i < j){
+            int mid = (i + j)/2;
+            int k = start;
+            while(k < end && (*p)[k][mid] == '0')
+                k++;
+            if(k < end == opt)
+                j = mid;
+            else
+                i = mid + 1;
+        }
+        return j;
+    }
+};
+
+
+
+
+
 // Time:  O(nlogn)
 // Space: O(1)
 
