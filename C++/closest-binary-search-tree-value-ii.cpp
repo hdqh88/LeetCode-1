@@ -10,6 +10,45 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+ 
+
+class Solution {
+public:
+    vector<int> closestKValues(TreeNode* root, double target, int k) {
+        vector<int> result;
+        stack<int> s1, s2;
+        inorder(root, target, false, &s1);
+        inorder(root, target, true, &s2);
+        
+        while(k-- > 0){
+            if(s1.empty()){
+                result.push_back(s2.top());
+                s2.pop();
+            }else if(s2.empty()){
+                result.push_back(s1.top());
+                s1.pop();
+            }else if(abs(s1.top() - target) < abs(s2.top() - target)){
+                result.push_back(s1.top());
+                s1.pop();
+            }else{
+                result.push_back(s2.top());
+                s2.pop();
+            }
+        }
+        return result;
+    }
+    
+    void inorder(TreeNode* p, int target, bool reverse, stack<int>* s){
+        if(!p) return;
+        inorder(reverse ? p->right : p->left, target, reverse, s);
+        if((!reverse && p->val <= target) || (reverse && p->val > target))
+            s->push(p->val);
+        inorder(reverse ? p->left : p->right, target, reverse, s);
+    }
+};
+
+
+
 class Solution {
 public:
     vector<int> closestKValues(TreeNode* root, double target, int k) {
