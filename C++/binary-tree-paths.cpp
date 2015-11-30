@@ -1,6 +1,6 @@
 // Time:  O(n * h)
 // Space: O(h)
-
+// Pre-order DFS
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
