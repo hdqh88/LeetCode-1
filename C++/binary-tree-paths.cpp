@@ -10,6 +10,49 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> result;
+        vector<string> path;
+        if(!root)
+            return result;
+        path.push_back(to_string(root->val));
+        if(!root->left && !root->right)
+            result.push_back(to_string(root->val));
+        if(root->left)
+            dfs(root->left, &result, &path);
+        if(root->right)
+            dfs(root->right, &result, &path);
+        return result;
+    }
+    
+    void dfs(TreeNode* p, vector<string>* result, vector<string>* path){
+        path->push_back("->" + to_string(p->val));
+        if(!p->left && !p->right)
+            result->push_back(join(path));
+        if(p->left)
+            dfs(p->left, result, path);
+        if(p->right)
+            dfs(p->right, result, path);
+        path->pop_back();
+    }
+    string join(vector<string>* path){
+        string str;
+        for(string ele : *path)
+            str += ele;
+        return str;
+    }
+};
+
+
+
+
+
+
+
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
