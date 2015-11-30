@@ -11,7 +11,7 @@
  * };
  */
 
-// DFS
+// In-order DFS
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
