@@ -35,7 +35,7 @@ public:
         return numbers;
     }
 
-    int node_id(const pair<int, int>& node, const int n) {
+    int node_id(pair<int, int>& node, int n) {
         return node.first * n + node.second;
     }
 
@@ -46,11 +46,15 @@ public:
        return (*set)[x];
     }
 
-    void union_set(unordered_map<int, int> *set, const int x, const int y) {
+    void union_set(unordered_map<int, int> *set, int x, int y) {
         int x_root = find_set(x, set), y_root = find_set(y, set);
         (*set)[min(x_root, y_root)] = max(x_root, y_root);
     }
 };
+
+
+
+
 
 
 // Time:  O(p), p is number of positions
