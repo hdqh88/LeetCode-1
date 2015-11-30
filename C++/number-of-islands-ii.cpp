@@ -8,7 +8,7 @@ public:
         vector<int> numbers;
         int number = 0;
         vector<pair<int, int>> directions{{0, -1}, {0, 1},
-                                                {-1, 0}, {1, 0}};
+                                          {-1, 0}, {1, 0}};
         unordered_map<int, int> set;
         for (auto& position : positions) {
             auto& node = make_pair(position.first, position.second);
